@@ -1,0 +1,2 @@
+# cdisp
+Console dispetcher application
