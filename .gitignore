@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Remporary
+./temp/*
+
+# Binary
+cdisp
