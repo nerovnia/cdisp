@@ -31,8 +31,8 @@
 *.out
 *.app
 
-# Remporary
-./temp/*
+# Temporary
+temp
 
 # Binary
 cdisp

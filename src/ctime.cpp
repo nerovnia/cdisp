@@ -1,12 +1,28 @@
 #include <iostream>
 #include <string>
-#include "timeconv.h"
+#include "ctime.h"
 
 using namespace std;
+/*
+int CTime::operator+(CTime t1, CTime t2) {
+  return t1.getTime() + t2.getTime();  
+}
+
+int CTime::operator-(CTime t1, CTime t2) {
+  return t1.getTime() - t2.getTime();  
+}  
+*/
+int CTime::getTime(void) {
+    return this->time;
+}
+
+string CTime::toString(void) {
+    return this->itsTime(this->time);
+}
 
 // Int to String time
-string its_time(int i_time) {
-  string s_time = "";
+string CTime::itsTime(int i_time) {
+  string s_time="";
   if (i_time < 0) {
       i_time *= (-1);
   }
@@ -27,9 +43,22 @@ string its_time(int i_time) {
   return s_time;
 }
 
+CTime::CTime(int x, int y, string s_time = "") {
+  if ( this->checkTime(s_time) ) {
+      this->time = stiTime(s_time);
+  } else {
+      this->time = 0;
+  }
+  this->x = x;
+  this->y = y;
+}
+
+//CTime::CTime(int x, int y) {
+//  this->CTime("", x, y);
+//}
 
 // String to int time
-int sti_time(string s_time) {
+int CTime::stiTime(string s_time) {
   char h1 = 0, h2 = 0, m1 = 0, m2 = 0;
   int t_time = 0;  
   if ( s_time.length() == 4) {
@@ -50,7 +79,18 @@ int sti_time(string s_time) {
   return t_time;
 }
 
-bool checkDigit(char digital) {
+bool CTime::checkTime(string str_time) {
+  if (str_time.length() == 4) {
+    for(int i = 0; i < 4; i++) {
+      if ( !this->checkDigit(str_time[i]) )
+        return false;
+    }
+    return true;
+  }
+  return false;
+}
+
+bool CTime::checkDigit(char digital) {
   if (( digital >= 48 ) && ( digital <= 57)) {
     return true;
   } 
